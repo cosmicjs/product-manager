@@ -13,6 +13,7 @@ export default class FormExample extends Component {
         </div>
         <Form
           config={ config }
+          onSubmit={ this.props.addProduct }
         />
       </div>
     )

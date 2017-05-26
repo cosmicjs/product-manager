@@ -64,7 +64,7 @@ class App extends Component {
       )
     }
     if (data.current_tab === 'Product Form')
-      return <FormArea />
+      return <FormArea addProduct={ this.addProduct.bind(this) }/>
   }
   handleModalClose() {
     const data = this.state.data
@@ -80,6 +80,30 @@ class App extends Component {
     data.current_product = object
     data.show_submission_modal = true
     this.setState({ data })
+  }
+  addProduct(form_component, form_elements) {
+    const data = this.state.data
+    data.loading = true
+    this.setState({ ...this.state, data })
+    const title = _.find(form_elements, { key: 'name' }).value
+    const object = {
+      title,
+      type_slug: config.submissions_slug,
+      metafields: form_elements
+    }
+    form_component.setState({ ...form_component.state, loading: true })
+    object.write_key = config.bucket.write_key
+    Cosmic.addObject(config, object, (err, res) => {
+      delete data.loading
+      form_component.state.form_elements.forEach(form_element => {
+        form_element.value = ''
+      })
+      data.current_tab = 'Products'
+      if (!data.products)
+        data.products = []
+      data.products.push(res.object)
+      this.setState({ ...this.state, data })
+    })
   }
   editProduct() {
     const data = this.state.data

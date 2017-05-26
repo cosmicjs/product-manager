@@ -7,6 +7,7 @@ import Products from './Partials/Products'
 import FormArea from './Partials/Form'
 import Installation from './Partials/Installation'
 import config from './config'
+import S from 'shorti'
 class App extends Component {
   constructor(props) {
     super(props)
@@ -80,17 +81,19 @@ class App extends Component {
     data.show_submission_modal = true
     this.setState({ data })
   }
-  editProduct(form_component) {
+  editProduct() {
     const data = this.state.data
-    form_component.setState({
-      ...form_component.state,
-      loading: true
+    data.loading = true
+    this.setState({
+      ...this.state,
+      data
     })
     const object = data.current_product
     object.write_key = config.bucket.write_key
     Cosmic.editObject(config, object, (err, res) => {
-      delete form_component.state.loading
-      form_component.setState({ ...form_component.state, show_success_modal: true })
+      delete data.loading
+      delete data.show_submission_modal
+      this.setState({ data, show_submission_modal: true })
       const products = data.products
       const index = _.findIndex(products, { slug: object.slug })
       if (!object.metadata)
@@ -109,6 +112,27 @@ class App extends Component {
       })
     })
   }
+  deleteProduct(object) {
+    const data = this.state.data
+    data.loading = true
+    this.setState({
+      ...this.state,
+      data
+    })
+    object.write_key = config.bucket.write_key
+    Cosmic.deleteObject(config, object, (err, res) => {
+      const products = data.products
+      const index = _.findIndex(products, { slug: object.slug })
+      delete products[index]
+      data.products = products
+      delete data.show_submission_modal
+      delete data.loading
+      this.setState({
+        ...this.state,
+        data
+      })
+    })
+  }
   render() {
     const data = this.state.data
     if (data.error)
@@ -117,11 +141,6 @@ class App extends Component {
       return this.getLoading()
     config.form_slug = 'product-form'
     config.submissions_slug = 'products'
-    const edit_button = (
-      <Button color='green' type="submit">
-        <Icon name='pencil' /> Edit
-      </Button>
-    )
     return (
       <div style={{ padding: 15 }}>
         <h1>Product Manager</h1>
@@ -154,13 +173,20 @@ class App extends Component {
               <Form
                 config={ config }
                 form={ data.current_product }
-                submit_button={ edit_button }
-                onSubmit={ this.editProduct.bind(this) }
+                submit_button={ ' ' }
+                onSubmit={ ' ' }
+                loading={ data.loading }
               />
             </Modal.Content>
             <Modal.Actions>
+              <Button style={ S('pull-left') } color='red' onClick={ this.deleteProduct.bind(this, data.current_product) }>
+                Delete Product
+              </Button>
               <Button primary onClick={ this.handleModalClose.bind(this) }>
-                Close
+                Cancel
+              </Button>
+              <Button color='green' onClick={ this.editProduct.bind(this) }>
+                Save Product
               </Button>
             </Modal.Actions>
           </Modal>

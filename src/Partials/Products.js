@@ -32,7 +32,7 @@ export default class Products extends Component {
             data.products.map(object => {
               return (
                 <Table.Row key={ object.slug }>
-                  <Table.Cell style={{ cursor: 'pointer', height: 70, textAlign: 'center' }} onClick={ this.props.showSubmissionModal.bind(this, object) }>
+                  <Table.Cell style={{ cursor: 'pointer', height: 70, textAlign: 'center', minWidth: 200 }} onClick={ this.props.showSubmissionModal.bind(this, object) }>
                     {
                       object.metadata.image &&
                       <img style={{ height: 60 }} src={ object.metadata.image.url } alt="product"/>

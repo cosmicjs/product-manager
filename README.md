@@ -1,6 +1,12 @@
 # Product Manager
 ![Product Manager](https://cosmicjs.com/uploads/decb8bb0-545e-11e7-94b6-bde57f84d41f-product-manager.png)
-A Cosmic JS Extension that can be added to your Bucket for easy product management.
+A Cosmic JS Extension that can be added to your Bucket for easy product management.  Built using [Create React App](https://github.com/facebookincubator/create-react-app).
+```
+git clone https://github.com/cosmicjs/product-manager
+cd product-manager
+yarn
+yarn start
+```
 ## Getting Started
 To add this Extension to your Bucket simply install it from Your Bucket > Extensions > Browse Extensions
 ## Documentation

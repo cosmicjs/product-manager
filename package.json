@@ -1,8 +1,4 @@
 {
-  "cosmic": {
-    "title": "Product Manager",
-    "font_awesome_class": "fa-tags"
-  },
   "name": "product-manager",
   "version": "0.0.1",
   "private": true,
@@ -11,9 +7,9 @@
   },
   "dependencies": {
     "async": "^2.3.0",
-    "compounds": "^1.1.999999999",
+    "compounds": "^1.2.11",
     "copy-to-clipboard": "^3.0.6",
-    "cosmicjs": "^2.39.0",
+    "cosmicjs": "^2.39.91",
     "lodash": "^4.17.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

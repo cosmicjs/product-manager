@@ -47,6 +47,13 @@ export default {
           "type": "text",
           "children": null
         },
+        {
+          "value": "",
+          "key": "image",
+          "title": "Image",
+          "type": "file",
+          "children": null
+        },
       ]
     },
     {

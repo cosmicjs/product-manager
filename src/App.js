@@ -30,8 +30,9 @@ class App extends Component {
       data.data_loaded = true
       data.current_tab = 'Products'
       const objects = cosmic.objects
-      data.products = objects.type['products']
-      if (cosmic.object['product-form'])
+      if (objects)
+        data.products = objects.type['products']
+      if (cosmic.object && cosmic.object['product-form'])
         data.form_elements = cosmic.object['product-form'].metafield.form_elements.children
       this.setState({
         data
@@ -169,14 +170,16 @@ class App extends Component {
       <div style={{ padding: 15 }}>
         <h1>Product Manager</h1>
         {
-          data.cosmic.object['product-form'] &&<Menu tabular>
-          <Menu.Item name='Products' active={data.current_tab === 'Products'} onClick={this.handleItemClick.bind(this)} />
-            <Menu.Item name='Product Form' active={data.current_tab === 'Product Form'} onClick={this.handleItemClick.bind(this)} />
-          </Menu>
+          data.cosmic.object && data.cosmic.object['product-form'] && (
+            <Menu tabular>
+              <Menu.Item name='Products' active={data.current_tab === 'Products'} onClick={this.handleItemClick.bind(this)} />
+                <Menu.Item name='Product Form' active={data.current_tab === 'Product Form'} onClick={this.handleItemClick.bind(this)} />
+              </Menu>
+            )
         }
         { this.getContent() }
         {
-          data.cosmic.object['product-form'] &&
+          data.cosmic.object && data.cosmic.object['product-form'] &&
           <Modal open={ data.show_success_modal } dimmer='blurring' basic size='small' onClose={ this.handleModalClose.bind(this) }>
             <Header icon={ data.cosmic.object['product-form'].metadata.success_message_icon } content={ data.cosmic.object['product-form'].metadata.success_message_title } />
             <Modal.Content>

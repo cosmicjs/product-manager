@@ -10,6 +10,6 @@ cd product-manager
 yarn
 yarn start
 ```
-Then in your browser open: http://localhost:3000?bucket_slug=your-bucket-slug
+Then in your browser open: http://localhost:3000?bucket_slug=your-bucket-slug&read_key=your-read-key&write_key=your-write-key
 ## Documentation
 To build your own Cosmic JS Extension, [read the Cosmic JS Extensions documentation](https://cosmicjs.com/docs/extensions).

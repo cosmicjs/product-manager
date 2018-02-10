@@ -65,7 +65,7 @@ class App extends Component {
       )
     }
     if (data.current_tab === 'Product Form')
-      return <FormArea addProduct={ this.addProduct.bind(this) }/>
+      return <FormArea addProduct={ this.addProduct.bind(this) } data={ data }/>
   }
   handleModalClose() {
     const data = this.state.data

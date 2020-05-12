@@ -11,7 +11,7 @@ export default class FormExample extends Component {
     return (
       <div style={{ maxWidth: 500 }}>
         <div style={{ textAlign: 'right' }}>
-          <a target="_parent" href={`https://cosmicjs.com/${config.bucket.slug}/edit-object/${product_form ? product_form._id : '' }`}><Icon name="pencil"/>Edit Form Fields</a>
+          <a target="_parent" href={`https://app.cosmicjs.com/${config.bucket.slug}/edit-object/${product_form ? product_form._id : '' }`}><Icon name="pencil"/>Edit Form Fields</a>
         </div>
         <Form
           config={ config }

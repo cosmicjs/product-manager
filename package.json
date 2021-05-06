@@ -10,7 +10,7 @@
     "compounds": "^1.2.11",
     "copy-to-clipboard": "^3.0.6",
     "cosmicjs": "^2.39.91",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.21",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-prism": "^4.1.0",

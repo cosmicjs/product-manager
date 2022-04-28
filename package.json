@@ -6,7 +6,7 @@
     "react-scripts": "0.9.5"
   },
   "dependencies": {
-    "async": "^2.3.0",
+    "async": "^2.6.4",
     "compounds": "^1.2.11",
     "copy-to-clipboard": "^3.0.6",
     "cosmicjs": "^2.39.91",
